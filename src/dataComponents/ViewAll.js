@@ -10,6 +10,7 @@ function ViewAll() {
     let [data, setData] = useState([]);
     let token = localStorage.getItem("authToken");
     let [show, setShow] = useState(false);
+    console.log(token)
 
     useEffect(()=>{
         async function getAll(){

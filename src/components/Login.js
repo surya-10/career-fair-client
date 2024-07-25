@@ -9,6 +9,7 @@ function Login() {
     let [show, setShow] = useState(false);
     let [btn, setBtn] = useState("Login");
     let navigate = useNavigate();
+    let token = localStorage.getItem("authToken");
 
     function handleEmailChange(e){
         setEmail(e.target.value);
@@ -41,6 +42,7 @@ function Login() {
                 method:"POST",
                 body:JSON.stringify(obj),
                 headers:{
+                    "auth-token": `${token}`,
                     "Content-type":"application/json"
                 }
             })
