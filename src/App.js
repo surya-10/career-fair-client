@@ -22,7 +22,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/forgot' element={<Forgot />} />
           <Route path='/reset-password/:id/:token' element={<UpdatePass />} />
-          <Route path='/home' element={<Home />} />
+          {/* <Route path='/home' element={<Home />} /> */}
           <Route path='/add' element={<AddProperty />} />
           <Route path='/all-property' element={<ViewAll />} />
           <Route path='/edit/:dataId' element={<Edit />} />
