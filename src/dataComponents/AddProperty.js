@@ -49,7 +49,7 @@ function AddProperty() {
     async function createProperty(obj){
         try{
         setBtn("Creating....")
-        let result = await fetch("http://localhost:8095/property/add-property", {
+        let result = await fetch("https://career-fair-server.onrender.com/property/add-property", {
             method:"POST",
             body:JSON.stringify(obj),
             headers:{

@@ -14,7 +14,7 @@ function ViewAll() {
     useEffect(()=>{
         async function getAll(){
 
-            let property = await fetch("http://localhost:8095/property/all", {
+            let property = await fetch("https://career-fair-server.onrender.com/property/all", {
                 method:"GET",
                 headers:{
                     "auth-token":`${token}`,
@@ -44,7 +44,7 @@ function ViewAll() {
     }
     let deleteData = async (id) => {
         try {
-            let response = await fetch(`http://localhost:8095/property/delete-property/${id}`, {
+            let response = await fetch(`https://career-fair-server.onrender.com/property/delete-property/${id}`, {
                 method: "DELETE",
                 headers: {
                     "auth-token": `${token}`,

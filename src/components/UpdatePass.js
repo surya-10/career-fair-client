@@ -47,7 +47,7 @@ function UpdatePass() {
     async function addNewPass(obj){
         setBtn("Updating...")
         try {
-            let addUser = await fetch(`http://localhost:8095/update-password/${id}`, {
+            let addUser = await fetch(`https://career-fair-server.onrender.com/update-password/${id}`, {
                 method:"POST",
                 body:JSON.stringify(obj),
                 headers:{

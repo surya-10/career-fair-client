@@ -65,7 +65,7 @@ function Edit() {
     console.log(obj)
     try {
       setBtn("Updating...");
-      const result = await fetch(`http://localhost:8095/property/edit-property/${dataId}`, {
+      const result = await fetch(`https://career-fair-server.onrender.com/property/edit-property/${dataId}`, {
         method: "POST",
         body: JSON.stringify(obj),
         headers: {
