@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function AddProperty() {
     let [name, setName] = useState("");
-    let [price, setPrice] = useState("");
+    let [price, setPrice] = useState([]);
     let [location, setLocation] = useState("");
     let [description, setDescription] = useState("");
     let [btn, setBtn] = useState("Create");
@@ -90,7 +90,7 @@ function AddProperty() {
                         
                         <div className='d-flex flex-column justify-content-start align-items-start'>
                             {/* <label>Enter your email</label> */}
-                            <input type='text' placeholder='Price'
+                            <input type='number' placeholder='Price'
                             value={price}
                             required
                             onChange={handlePrice}/>

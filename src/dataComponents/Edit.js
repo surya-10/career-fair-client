@@ -7,7 +7,7 @@ import { myData } from '../App';
 function Edit() {
   const { propertyData, setPropertyData } = useContext(myData);
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState([]);
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [btn, setBtn] = useState("Update property");
@@ -98,7 +98,7 @@ function Edit() {
                   <input type='text' placeholder='Property name' value={name} required onChange={handleName} />
                 </div>
                 <div className='d-flex flex-column justify-content-start align-items-start'>
-                  <input type='text' placeholder='Price' value={price} required onChange={handlePrice} />
+                  <input type='number' placeholder='Price' value={price} required onChange={handlePrice} />
                 </div>
                 <div className='d-flex flex-column justify-content-start align-items-start'>
                   <input type='text' placeholder='Location' value={location} required onChange={handleLocation} />

@@ -82,7 +82,7 @@ function ViewAll() {
                         <img src={home} className="property-image" alt="Property" />
                         <div className="property-details">
                             <p className="property-type">{prop.propertyType}</p>
-                            <p>Price: <span className="property-price">{prop.price} all taxes (inclusive)</span></p>
+                            <p>Price Rs: <span className="property-price">{prop.price} all taxes (inclusive)</span></p>
                             <p>Location: <span className="property-location">{prop.location}</span></p>
                             <p>Status: <span className="property-status">{prop.status}</span></p>
                             <p className="property-description">{prop.description}</p>
