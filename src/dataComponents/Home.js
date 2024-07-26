@@ -30,7 +30,7 @@ function Home({children}) {
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button className="btn" style={{background:"linear-gradient(to right, #8ba9d7, #879bdf, #908ae1, #a375db, #bb59cc)", color:"white"}} type="submit">Search</button>
       </form>
-      <div className=''>
+      <div className='btn-logout'>
       <button className='btn btn-dark' onClick={logout}>Logout</button>
       </div>
     </div>

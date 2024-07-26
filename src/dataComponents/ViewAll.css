@@ -1,0 +1,133 @@
+.container {
+    padding: 20px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #ddd;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.property-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.property-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 500px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+.property-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.property-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.property-details {
+    flex: 1;
+}
+
+.property-type {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.property-price, .property-location, .property-status {
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.property-description {
+    font-size: 14px;
+    text-align: justify;
+    color: #777;
+    margin-top: 10px;
+}
+
+.property-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-edit {
+    background: #6643b5;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #0056b3;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #c82333;
+}
+
+@media (max-width: 768px) {
+    .property-card {
+        width: 100%;
+    }
+
+    .property-header {
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .property-image {
+        margin: 0 0 15px 0;
+        width: 150px; 
+        height: 150px;
+    }
+
+    .property-details {
+        text-align: center;
+    }
+
+    .property-actions {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+}

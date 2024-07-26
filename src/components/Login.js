@@ -35,7 +35,7 @@ function Login() {
     }
 
     async function createUser(obj){
-        setBtn("Creating...")
+        setBtn("Verifying...")
         try {
             let addUser = await fetch("https://career-fair-server.onrender.com/login", {
                 method:"POST",
