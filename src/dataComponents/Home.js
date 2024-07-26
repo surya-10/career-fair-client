@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 function Home({children}) {
     let navigate = useNavigate()
+
+    function logout(){
+        localStorage.clear();
+        navigate("/login");
+    }
   return (
     <div>
         <div className='nav-bar'>
@@ -21,10 +26,13 @@ function Home({children}) {
           <button className='home-btn' onClick={()=>navigate("/all-property")}>View all</button>
         </li>
       </ul>
-      <form className="d-flex" role="search">
+      <form className="d-flex me-5" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button className="btn" style={{background:"linear-gradient(to right, #8ba9d7, #879bdf, #908ae1, #a375db, #bb59cc)", color:"white"}} type="submit">Search</button>
       </form>
+      <div className=''>
+      <button className='btn btn-dark' onClick={logout}>Logout</button>
+      </div>
     </div>
   </div>
 </nav>

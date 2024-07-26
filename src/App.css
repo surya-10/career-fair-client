@@ -111,9 +111,9 @@ input{
 }
 .child-img{
   position: absolute;
-  width: 100px;
-  height: 100px;
-  top: -10px;
+  width: 150px;
+  height: 150px;
+  top: 0px;
   right: 0px;
 }
 .par{

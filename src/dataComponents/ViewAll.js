@@ -74,15 +74,15 @@ function ViewAll() {
             {show ? <div>
                 <div className='d-flex flex-row flex-wrap justify-content-center align-items-center g-2 par'>
                     {data.map((prop, ind)=>(
-                        <div className="child-prop d-flex justify-content-center align-items-center flex-column mt-4" style={{ width:"360px", borderRadius:"5px"}} key={ind}>
+                        <div className="child-prop d-flex justify-content-center align-items-center flex-column mt-3" style={{ width:"360px", borderRight:"1px solid whitesmoke"}} key={ind}>
                             <div className='d-flex'>
                                 <img src={home} className='child-img'/>
                                 <div className='datas mt-5 p-3'>
                                    <p className='fw-bold fs-5'>{prop.propertyType}</p>
-                                   <p>Price: {prop.price} all taxes(inclusive)</p>
-                                   <p>Location: {prop.location}</p>
-                                   <p>Status {prop.status}</p>
-                                   <p style={{textAlign:"justify", fontSize:"14px", textIndent:"20px"}}>{prop.description}</p>
+                                   <p>Price: <span className='fw-bolder'>{prop.price} all taxes(inclusive)</span></p>
+                                   <p>Location: <span className='fw-bolder'>{prop.location}</span></p>
+                                   <p>Status: <span className='fw-bolder'>{prop.status}</span></p>
+                                   <p style={{textAlign:"justify", fontSize:"13px", textIndent:"20px"}}>{prop.description}</p>
                                    </div>
                                 </div>
                             <div className='btn-prop'>
