@@ -10,16 +10,13 @@ function ViewAll() {
     let [data, setData] = useState([]);
     let token = localStorage.getItem("authToken");
     let [show, setShow] = useState(false);
-    console.log(token)
 
     useEffect(()=>{
         async function getAll(){
-
             let property = await fetch("https://career-fair-server.onrender.com/property/all", {
                 method:"GET",
                 headers:{
-                    "auth-token":`${token}`,
-                    "content-type":"application/json"
+                    "auth-token":`${token}`
                 }
             })
             let resp = await property.json();

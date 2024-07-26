@@ -45,7 +45,6 @@ function Login() {
                 }
             })
             let response = await addUser.json();
-            console.log(response)
             if(response.ok){
                 localStorage.setItem("userId", response.id);
                 localStorage.setItem("authToken", response.token);

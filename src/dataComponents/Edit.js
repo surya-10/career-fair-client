@@ -62,7 +62,6 @@ function Edit() {
   }
 
   async function updateProperty(obj) {
-    console.log(obj)
     try {
       setBtn("Updating...");
       const result = await fetch(`https://career-fair-server.onrender.com/property/edit-property/${dataId}`, {

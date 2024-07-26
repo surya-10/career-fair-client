@@ -57,7 +57,6 @@ function UpdatePass() {
             let response = await addUser.json();
             if(response.ok){
 
-                console.log(response)
                 alert(response.response);
                 navigate("/login")   
             }
