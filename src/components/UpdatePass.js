@@ -15,7 +15,7 @@ function UpdatePass() {
     useEffect(() => {
 
         async function verifytoken() {
-            let isValid = await fetch(`http://localhost:8095/token-verify/${id}/${token}`, {
+            let isValid = await fetch(`https://career-fair-server.onrender.com/token-verify/${id}/${token}`, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json"
