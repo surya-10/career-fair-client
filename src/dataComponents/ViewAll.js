@@ -1,49 +1,79 @@
-
-
 import React, { useContext, useEffect, useState } from 'react';
 import Home from './Home';
 import { useNavigate } from 'react-router-dom';
 import home from "../images/h2.png";
 import { myData } from '../App';
 import './ViewAll.css';
+import { useTypewriter } from 'react-simple-typewriter';
 
 function ViewAll() {
-    let {propertyData, setPropertyData} = useContext(myData);
+    let { propertyData, setPropertyData } = useContext(myData);
     let navigate = useNavigate();
     let [data, setData] = useState([]);
     let token = localStorage.getItem("authToken");
     let [show, setShow] = useState(false);
-    console.log(token);
+    let [allProp, setAllProp] = useState([]);
+    let [search, setSearch] = useState("");
+    let [typeMsg, setTypeMsg] = useState("All Properties");
 
-    useEffect(()=>{
-        async function getAll(){
+    useEffect(() => {
+        async function getAll() {
             let property = await fetch("https://career-fair-server.onrender.com/property/all", {
-                method:"GET",
-                headers:{
-                    "auth-token":`${token}`,
-                    "content-type":"application/json"
+                method: "GET",
+                headers: {
+                    "auth-token": `${token}`,
+                    "Content-Type": "application/json"
                 }
             });
             let resp = await property.json();
-            console.log(resp);
-            if(resp.response === "Authentication failed" || resp.response === "no token"){
+            if (resp.response === "Authentication failed" || resp.response === "no token") {
                 navigate("/login");
             }
-            if(resp.data){
+            if (resp.data) {
                 setShow(true);
                 setData(resp.data);
+                setAllProp(resp.data);
                 setPropertyData(resp.data);
             }
         }
         getAll();
-    }, [token, navigate, setPropertyData]);
+    }, [token, setPropertyData, navigate]);
 
-    function deleteProp(id){
+    function deleteProp(id) {
         deleteData(id);
     }
 
-    function editProp(id){
+    function editProp(id) {
         navigate(`/edit/${id}`);
+    }
+
+    let [text] = useTypewriter({
+        words: [
+            'Search by location',
+            'Search by price',
+            'Search by property'
+        ],
+        loop: 0,
+    });
+
+    function handleSearch(e) {
+        e.preventDefault();
+        setShow(false);
+        setTypeMsg("Search Results");
+
+        let searchData = allProp.filter((property) => 
+            property.propertyType.toLowerCase().includes(search.toLowerCase()) ||
+            property.price.toString().includes(search) ||
+            property.location.toLowerCase().includes(search.toLowerCase())
+        );
+
+        if (searchData.length > 0) {
+            setData(searchData);
+            setShow(true);
+        } else {
+            setData([]);
+            setShow(true);
+        }
     }
 
     let deleteData = async (id) => {
@@ -71,36 +101,76 @@ function ViewAll() {
         }
     };
 
-  return (
-   <Home>
-    <div className="container">
-        <p className="title">All properties</p>
-        <div className="property-list">
-            {show ? data.map((prop, ind) => (
-                <div className="property-card" key={ind}>
-                    <div className="property-header">
-                        <img src={home} className="property-image" alt="Property" />
-                        <div className="property-details">
-                            <p className="property-type">{prop.propertyType}</p>
-                            <p>Price Rs: <span className="property-price">{prop.price} all taxes (inclusive)</span></p>
-                            <p>Location: <span className="property-location">{prop.location}</span></p>
-                            <p>Status: <span className="property-status">{prop.status}</span></p>
-                            <p className="property-description">{prop.description}</p>
+    function clearSearch(e) {
+        e.preventDefault()
+        setSearch("");
+        setShow(true);
+        setTypeMsg("All Properties");
+        setData(propertyData);
+    }
+
+    return (
+        <Home>
+            <div>
+                <form className="d-flex me-5 mt-4" role="search" onSubmit={handleSearch}>
+                    <div className='d-flex justify-content-end align-items-center'>
+                        <input
+                            className="form-control me-2 border"
+                            type="search"
+                            placeholder={text}
+                            aria-label="Search"
+                            required
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <div className='d-flex'>
+                            <button
+                                className="btn mt-1"
+                                style={{ background: "linear-gradient(to right, #8ba9d7, #879bdf, #908ae1, #a375db, #bb59cc)", color: "white" }}
+                                type="submit"
+                            >
+                                Search
+                            </button>
+                            <button
+                                className='ms-4 mt-1 btn border rounded'
+                                style={{ fontSize: "13px" }}
+                                onClick={clearSearch}
+                            >
+                                Clear
+                            </button>
                         </div>
                     </div>
-                    <div className="property-actions">
-                        <button className="btn btn-edit" onClick={() => editProp(prop._id)}>Edit</button>
-                        <button className="btn btn-delete" onClick={() => deleteProp(prop._id)}>Delete</button>
+                </form>
+                <div className="container">
+                    <p className="title">{typeMsg}</p>
+                    <div className="property-list">
+                        {show ? data.length > 0 ? data.map((prop, ind) => (
+                            <div className="property-card" key={ind}>
+                                <div className="property-header">
+                                    <img src={home} className="property-image" alt="Property" />
+                                    <div className="property-details">
+                                        <p className="property-type">{prop.propertyType}</p>
+                                        <p>Price Rs: <span className="property-price">{prop.price} all taxes (inclusive)</span></p>
+                                        <p>Location: <span className="property-location">{prop.location}</span></p>
+                                        <p>Status: <span className="property-status">{prop.status}</span></p>
+                                        <p className="property-description">{prop.description}</p>
+                                    </div>
+                                </div>
+                                <div className="property-actions">
+                                    <button className="btn btn-edit" onClick={() => editProp(prop._id)}>Edit</button>
+                                    <button className="btn btn-delete" onClick={() => deleteProp(prop._id)}>Delete</button>
+                                </div>
+                            </div>
+                        )) : <p>No properties found matching your search criteria.</p> : <p>Loading...</p>}
                     </div>
                 </div>
-            )) : <p>No data to display</p>}
-        </div>
-    </div>
-   </Home>
-  )
+            </div>
+        </Home>
+    );
 }
 
 export default ViewAll;
+
 
 
 
